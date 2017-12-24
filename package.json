@@ -1,8 +1,8 @@
 {
-  "name": "vue-firebase-auth-vuex",
+  "name": "memer",
   "version": "1.0.0",
-  "description": "vue firebase auth vuex",
-  "author": "aofdev <aof.dev@gmail.com>",
+  "description": "memer",
+  "author": "BitByteBit",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
