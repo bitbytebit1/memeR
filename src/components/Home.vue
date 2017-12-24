@@ -111,7 +111,7 @@ export default {
                 break;
         }
     }
-    this.getNextMeme()
+    this.getRandomMeme()
   },
   destroyed () {
     // document.onkeydown = null
