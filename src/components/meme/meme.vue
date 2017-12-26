@@ -1,18 +1,21 @@
 <template>
     <v-layout>
-      <v-flex xs12 sm12>
+      <v-flex xs12 sm8 offset-xs2>
         <v-card>
           <transition name="slide" mode="out-in">
+            <!-- Image -->
             <v-card-media>
-              <img :src="imgSrc" :key="imgSrc" :height="height"> 
+              <img :src="imgSrc" :key="imgSrc" id="img"> 
             </v-card-media>
           </transition>
+          <!-- Title -->
           <v-card-title primary-title>
             <div>
               <div></div>
               <h3 class="headline mb-0">{{title}}</h3>
             </div>
           </v-card-title>
+          <!-- Actions -->
           <v-card-actions>
             <v-btn flat color="orange" @click="share">Share</v-btn>
             <v-btn disabled flat color="orange">Save</v-btn>
@@ -58,16 +61,19 @@ export default {
     }
   },
   computed: {
-    height () {
+    styleObj () {
       // Reduce height by 29% to force image to fit screen...
       // Should check image length, if over x then don't bother!
-      return (window.innerHeight - ((window.innerHeight / 100) * 30)) + 'px'
+      return { 'height': (window.innerHeight - ((window.innerHeight / 100) * 30)) + 'px' }
     }
   }
 }
 </script>
 
 <style>
+#img{
+  height:100%;
+}
 .slide-fade-enter-active {
   transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
