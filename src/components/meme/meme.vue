@@ -28,7 +28,7 @@
           v-model="snackbar"
           color="green"
         >
-          Copied to clipboard
+          {{ $vuetify.breakpoint.xsOnly ? 'Sharing' : 'Copied to clipboard'}}
           <v-btn flat icon @click.native="snackbar = false">Close</v-btn>
         </v-snackbar>
       </v-flex>
