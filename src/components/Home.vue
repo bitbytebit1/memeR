@@ -1,8 +1,8 @@
 <template>
   <v-container 
       v-touch="{
-        left: () => swipe('Left'),
-        right: () => swipe('Right')
+        left: () => swipe('left'),
+        right: () => swipe('right')
       }"
     >
     <v-layout>
@@ -34,26 +34,30 @@ export default {
   methods: {
     swipe (direction) {
       if (direction === 'left') {
-        this.getRandomMeme()
+        this.getPreviousMeme()
       } else {
-        this.getRandomMeme()
+        this.getNextMeme()
       }
+    },
+    setMeme(imgSrc, title) {
+      this.imgSrc = imgSrc
+      this.title = title
     },
     getNextMeme() {
       this.current++
       if (this.current < this.memes.length) {
-        console.log('history')
+        this.setMeme(this.memes[this.current].imgSrc, this.memes[this.current].title)
       } else {
-        console.log('get a new meme')
+        this.getRandomMeme()
       }
     },
     getPreviousMeme() {
       this.current = Math.max(0, this.current - 1)
-      console.log(this.current)
+      this.setMeme(this.memes[this.current].imgSrc, this.memes[this.current].title)
     },
     getRandomMeme () {
       axios({
-          // 160
+          // url: `https://api.imgur.com/3/gallery/search/time/all/160?q_any=meme OR funny`,
           url: `https://api.imgur.com/3/gallery/t/meme/viral/week/${this.page}`,
           method: 'get',
           headers: {
@@ -61,21 +65,20 @@ export default {
           }
       })
       .then(response => {
-          // Calculate total number of pages
+        console.log(response.data.data)
+          // Calculate total number of pages (60 items per page)
           this.TotalPages = Math.floor(response.data.data.total_items / 60)
           this.$store.commit('setTotalMemes', response.data.data.total_items)
           // get random page for next search
           this.page = this.ran(this.TotalPages)
           // choose random photo index
           let index = this.ran(response.data.data.items.length - 1)
-          // If is album
+          // If is album choose random photo from album
           if (response.data.data.items[index].is_album) {
             let albumIndex = this.ran(response.data.data.items[index].images.length)
-            this.imgSrc = response.data.data.items[index].images[albumIndex].link
-            this.title = response.data.data.items[index].title
+            this.setMeme(response.data.data.items[index].images[albumIndex].link, response.data.data.items[index].title)
           } else {
-            this.imgSrc = response.data.data.items[index].link
-            this.title = response.data.data.items[index].title
+            this.setMeme(response.data.data.items[index].link, response.data.data.items[index].title)
           }
           this.memes.push({title: this.title, imgSrc: this.imgSrc})
       })
@@ -94,21 +97,19 @@ export default {
   },
   created () {
     document.onkeydown = (e) => {
-        switch (e.keyCode) {
-            case 37:
-                this.getRandomMeme()
-                // this.getPreviousMeme()
-                break;
-            case 38:
-                // alert('up');
-                break;
-            case 39:
-                // this.getNextMeme()
-                this.getRandomMeme()
-                break;
-            case 40:
-                // alert('down');
-                break;
+      switch (e.keyCode) {
+      case 37:
+        this.getPreviousMeme()
+        break;
+      case 38:
+         // alert('up');
+        break;
+      case 39:
+      this.getNextMeme()
+        break;
+      case 40:
+        // alert('down');
+        break;
         }
     }
     this.getRandomMeme()
