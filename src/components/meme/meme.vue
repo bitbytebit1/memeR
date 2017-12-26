@@ -1,6 +1,6 @@
 <template>
     <v-layout>
-      <v-flex xs12 sm8 offset-xs2>
+      <v-flex xs12 sm8 offset-sm2>
         <v-card>
           <transition name="slide" mode="out-in">
             <!-- Image -->
@@ -86,6 +86,7 @@ export default {
 }
 .slide-fade-enter-active {
   transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  opacity: 0;
 }
 
 .slide-fade-leave-active {
