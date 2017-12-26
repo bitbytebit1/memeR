@@ -13,6 +13,7 @@
             <div>
               <div></div>
               <h3 class="headline mb-0">{{title}}</h3>
+              <h4 class="headline mb-0">{{description}}</h4>
             </div>
           </v-card-title>
           <!-- Actions -->
@@ -27,7 +28,7 @@
 <script>
 export default {
   name: 'meme',
-  props: ['imgSrc', 'title'],
+  props: ['imgSrc', 'title', 'description'],
   data () {
     return {
       snackbar: false
