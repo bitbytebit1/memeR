@@ -22,6 +22,15 @@
             <v-btn disabled flat color="orange">Save</v-btn>
           </v-card-actions>
         </v-card>
+        <v-snackbar
+          :timeout="2000"
+          top
+          v-model="snackbar"
+          color="green"
+        >
+          Copied to clipboard
+          <v-btn flat icon @click.native="snackbar = false">Close</v-btn>
+        </v-snackbar>
       </v-flex>
     </v-layout>
 </template>
