@@ -69,6 +69,8 @@
     <v-snackbar
       :timeout="2000"
       top
+      right
+      class="mr-1"
       v-model="snackbar"
       color="green"
     >
