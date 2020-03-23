@@ -6,11 +6,10 @@
     }"
   >
     <v-row>
-      <div class="center-div">
-        <!-- <v-card
-          min-width="500"
-          min-height="500"
-        > -->
+      <div
+        class="center-div"
+        @click="nextIfMobile"
+      >
         <ScalingSquares
           v-if="loading"
           class="ma-auto"
@@ -58,6 +57,11 @@ export default {
     }
   },
   methods: {
+    nextIfMobile () {
+      if (this.$vuetify.breakpoint.smAndDown) {
+        this.getNextMeme()
+      }
+    },
     swipe (direction) {
       if (direction === 'left') {
         this.getPreviousMeme()
