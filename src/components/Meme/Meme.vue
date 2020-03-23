@@ -66,6 +66,7 @@
         </v-btn>
       </v-card-actions>
     </v-card>
+    {{ maxSize }}
     <v-snackbar
       :timeout="2000"
       top
@@ -143,7 +144,8 @@ export default {
   },
   computed: {
     maxSize () {
-      return this.$vuetify.breakpoint.smAndDown ? '380' : '500'
+      return this.$vuetify.breakpoint.smAndDown
+        ? window.innerWidth - 20 : '500'
     },
     isVideo () {
       return String(this.imgSrc).includes('.mp4')
