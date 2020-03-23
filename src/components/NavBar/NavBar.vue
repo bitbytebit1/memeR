@@ -61,6 +61,7 @@ export default {
   computed: {
     menuItems () {
       let menuItems = [
+        { icon: 'search', text: 'Browse', link: '/' },
         { icon: 'face', text: 'Sign up', link: '/signup' },
         { icon: 'lock_open', text: 'Sign in', link: '/signin' }
       ]
