@@ -14,15 +14,20 @@
         <ScalingSquares
           v-if="loading"
           class="ma-auto"
+          style="top:-75px"
         />
-        <!-- <v-card-title /> -->
-        <!-- </v-card> -->
+        <!-- <transition
+          name="fade"
+          mode="out-in"
+        > -->
         <Meme
           v-else
+          :key="imgSrc"
           :img-src="imgSrc"
           :title="title"
           :description="description"
         />
+        <!-- </transition> -->
       </div>
     </v-row>
   </v-container>
@@ -155,5 +160,24 @@ export default {
 <style>
 .center-div{
   margin: auto;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-leave-active,
+.slide-enter-active {
+  transition: 1s;
+}
+.slide-enter {
+  transform: translate(100%, 0);
+}
+.slide-leave-to {
+  transform: translate(-100%, 0);
 }
 </style>
