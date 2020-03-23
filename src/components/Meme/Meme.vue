@@ -158,25 +158,5 @@ export default {
 </script>
 
 <style>
-.slide-fade-enter-active {
-  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  opacity: 0;
-}
 
-.slide-fade-leave-active {
-  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-
-.slide-fade-enter{
-  transform: translateX(100px);
-}
-
-.slide-fade-leave-to{
-  transform: translateY(-100px);
-  opacity: 0;
-}
-
-.slide-fade-move {
-  transition: transform 2s;
-}
 </style>
