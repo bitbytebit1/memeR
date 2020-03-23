@@ -4,7 +4,9 @@
     <v-app-bar
       app
       clipped-left
-      class="blue accent-4"
+      class=""
+      color="transparent"
+      flat
     >
       <!-- Toggle sidebar button -->
       <v-app-bar-nav-icon
@@ -13,7 +15,7 @@
       />
 
       <!-- Title -->
-      <v-toolbar-title class="orange--text accent-4">
+      <v-toolbar-title class="white--text accent-4">
         memeR
       </v-toolbar-title>
     </v-app-bar>
@@ -24,11 +26,14 @@
       clipped
       v-model="drawer"
       disable-route-watcher
+      color="orange accent-4"
     >
-      <v-list dense>
+      <v-list
+        dense
+      >
         <v-list-item
           v-for="item in menuItems"
-          active-class="orange--text"
+          active-class="black--text"
           :key="item.title"
           :to="item.link"
         >
